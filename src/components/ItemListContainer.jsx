@@ -10,6 +10,7 @@ const ItemListContainer = () => {
     const [isLoading, setIsLoading] = useState(true);
     const { categoryId } = useParams();
 
+
     useEffect(() => {
         setIsLoading(true);
         console.log("Category ID:", categoryId);

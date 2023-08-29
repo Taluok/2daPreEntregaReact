@@ -13,8 +13,8 @@ function App() {
         {/*Aca se muestran todos los productos*/}
         <Route path="/" element={<ItemListContainer />} />
         {/*Aca se muestran los productos por categorias*/}
-        <Route path="/category/:id" element={<ItemListContainer />} />
-        
+        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+
         <Route path="/item/:id" element={<ItemDetailContainer />} />
       </Routes>
     </div>

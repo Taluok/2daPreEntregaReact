@@ -4,7 +4,7 @@ import CartWidget from "./CartWidget/CartWidget";
 
 const Navbar = () => {
     const notificationCount = 5;
-
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -28,11 +28,6 @@ const Navbar = () => {
                         <NavLink className="nav-link" exact="true" to="/">
                         Home
                         </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/category/Sneakers">
-                                Todos Los Productos
-                            </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/category/OtherSneakers">
