@@ -16,6 +16,6 @@ Este repositorio contiene el código fuente de una aplicación web desarrollada 
 
 ## Instalación
 
-1. Clona este repositorio: https://github.com/tu-usuario/tu-repositorio.git
+1. Clona este repositorio: https://github.com/Taluok/2daPreEntregaReact.git
 2. Instala las dependencias: `npm install`.
 3. Inicia la aplicación: `npm start`.
