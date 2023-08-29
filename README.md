@@ -1,8 +1,21 @@
-# React + Vite
+Este repositorio contiene el código fuente de una aplicación web desarrollada en React para crear una tienda en línea de zapatillas. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Características Principales
 
-Currently, two official plugins are available:
+- Explora una amplia selección de zapatillas de diversas categorías.
+- Detalles de producto completos, incluyendo imágenes, precio y categoría.
+- Filtra productos por categoría para una navegación más específica.
+- Interfaz de usuario amigable y atractiva, diseñada con Bootstrap.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Cómo Funciona
+
+1. La aplicación utiliza componentes de React para representar la interfaz de usuario.
+2. Los datos de los productos se almacenan en el archivo `services.js`.
+3. La aplicación utiliza React Router para manejar las rutas y la navegación.
+4. Se implementa un carrito de compras con notificaciones de productos.
+
+## Instalación
+
+1. Clona este repositorio: https://github.com/Taluok/2daPreEntregaReact.git
+2. Instala las dependencias: `npm install`.
+3. Inicia la aplicación: `npm start`.
