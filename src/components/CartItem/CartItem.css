@@ -1,0 +1,17 @@
+.cartCard{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    font-size: 2rem;
+}
+.cartRemove{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cartImg{
+    width: 10%;
+}

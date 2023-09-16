@@ -1,0 +1,10 @@
+.imageItem{
+    width: 50%;
+    height: 48%;
+}
+.card-text{
+    font-size: 1.2rem;
+    margin-top: -2rem;
+    margin-bottom: -2rem;
+    color: rgb(135, 135, 135);
+}

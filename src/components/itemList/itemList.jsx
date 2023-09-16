@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "./itemList.css";
 
 const ItemList = ({ items, isLoading }) => {
     if (isLoading) {
@@ -15,8 +16,8 @@ const ItemList = ({ items, isLoading }) => {
                     <img src={item.images} className="card-img-top" alt={item.name} />
                         <div className="card-body">
                             <h3 className="card-title">{item.name}</h3>
+                            <p className="card-text2">{item.category}</p>
                             <p className="card-text">${item.price}</p>
-                            <p className="card-text">{item.category}</p>
                             <Link to={`/item/${item.id}`} className="btn btn-primary">
                                 Ver Detalles
                             </Link>

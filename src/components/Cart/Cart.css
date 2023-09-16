@@ -1,0 +1,13 @@
+.cartBody{
+    display: flex;
+    flex-direction: column;
+}
+.total{
+    text-align: center;
+}
+.cartBoton{
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    padding: 2%;
+}

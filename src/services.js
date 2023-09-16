@@ -1,5 +1,5 @@
 const products = [
-    { id: "1", name: "Air Jordan 1 Zoom Air CMFT 2", price: 800, category: "Sneakers", images: "/img/1.webp" },
+    { id: "1", name: "Air Jordan 1 Zoom Air CMFT 2", price: 800, category: "Sneakers", images: "/img/1.webp", description:"Zapatillas Jordan Unisex" },
     { id: "2", name: "Tatum 1 Pink Lemonade", price: 600, category: "Sneackers",images:"/img/2.webp"},
     { id: "3", name: "Jordan Why Not .6", price: 700, category: "OtherSneakers",images:"/img/3.webp" },
     { id: "4", name: "Air Jordan 2 Retro", price: 900, category: "Sneakers",images:"/img/4.webp" },
