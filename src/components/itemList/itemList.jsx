@@ -16,9 +16,9 @@ const ItemList = ({ items, isLoading }) => {
                                 <img
                                     src={`/img/${item.images}`}
                                     alt={item.name}
-                                    className="card-img-top"
+                                    className="card-img-top imagList"
                                 />
-                                <div className="card-body">
+                                <div className="card-body cartBody">
                                     <h3 className="card-title">{item.name}</h3>
                                     <p className="card-text">{item.category}</p>
                                     <p className="card-text1">Price: ${item.price}</p>
@@ -27,7 +27,7 @@ const ItemList = ({ items, isLoading }) => {
                                             pathname: `/item/${item.id}`,
                                             state: { product: item },
                                         }}
-                                        className="btn btn-primary btn-details"
+                                        className="btn btn-primary btn-details botonlist"
                                     >
                                         Ver Detalles
                                     </Link>

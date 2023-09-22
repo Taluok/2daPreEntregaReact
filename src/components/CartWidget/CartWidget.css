@@ -4,3 +4,8 @@
     text-decoration: none;
     color: white;
 }
+/* Estilos para el número del carrito */
+.cart-number {
+    color: #ffffff; /* Color predeterminado cuando no hay productos en el carrito */
+}
+

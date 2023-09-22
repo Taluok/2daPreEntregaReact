@@ -53,8 +53,8 @@ const Checkout = () => {
 
     return (
         <div>
-            <h2>Checkout</h2>
-            <form>
+            <h2 className= "tituloCheckout">Ingresa tus datos para poder completar la compra</h2>
+            <form className="formCheckout">
                 {/* Campos de entrada para la información de envío */}
                 <div>
                     <label>Nombre completo:</label>

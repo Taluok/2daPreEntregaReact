@@ -41,22 +41,27 @@ const ItemDetail = ({ item, isLoading }) => {
 
     return (
         <div>
-            <div key={item.id} className="text-white p-5">
-                <img src={`/img/${item.images}`} alt={item.name} className="imageItem" />
-                <div className="card-body d-flex flex-column justify-content-around text-center align-items-center">
+            <div key={item.id} className="text-white p-5 item-container">
+                <div className="image-container">
+                    <img src={`/img/${item.images}`} alt={item.name} className="imageItem" />
+                </div>
+                <div className="card-body cardBody d-flex flex-column justify-content-around text-center align-items-center">
                     <h1 className="card-title">{item.name}</h1>
-                    <p className="card-text"> {item.description}</p>
-                    {/* Asegúrate de importar y utilizar ColorSelector si es necesario */}
+                    <p className="card-text cardText"> {item.description}</p>
+
                     <ColorSelector />
-                    <p className="card-text text-danger fw-bold fs-1">${item.price}</p>
+                    <p className="card-text cardtext1 text-danger fw-bold fs-1">${item.price}</p>
                     {quantityAdded > 0 ? (
                         <>
-                            <Link to="/cart" className="btn btn-dark">
-                                Terminar Compra
-                            </Link>
-                            <Link to="/" className="btn btn-dark">
-                                Seguir comprando
-                            </Link>
+                            <div className="d-flex flex-column">
+                                <Link to="/cart" className="btn btn-dark mb-3">
+                                    Terminar Compra
+                                </Link>
+                                <Link to="/" className="btn btn-dark">
+                                    Seguir comprando
+                                </Link>
+                            </div>
+
                         </>
                     ) : (
                         <ItemCount initial={1} stock={10} onAdd={handleOnAdd} />

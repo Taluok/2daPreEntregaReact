@@ -5,10 +5,14 @@
     align-items: center;
     min-height: 100vh;
 }
-
+.tituloCheckout{
+    padding-top: 2.5rem;
+    text-align: center;
+}
 /* Estilos para el formulario */
-form {
-    
+.formCheckout {
+    margin-left: 29rem;
+    margin-top: 3rem;
     background-color: #f7f7f7;
     padding: 20px;
     border-radius: 8px;
