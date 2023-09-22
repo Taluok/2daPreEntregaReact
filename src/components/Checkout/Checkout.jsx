@@ -1,10 +1,8 @@
-
 import React, { useState } from 'react';
-import"./Checkout.css";
-
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import "./Checkout.css";
 
 const Checkout = () => {
-    
     const [shippingInfo, setShippingInfo] = useState({
         fullName: '',
         address: '',
@@ -12,68 +10,100 @@ const Checkout = () => {
         postalCode: '',
     });
 
+    const [orderId, setOrderId] = useState(null);
+
+    const createOrder = () => {
+        // Verificar si los campos de información de envío están completos
+        if (!shippingInfo.fullName || !shippingInfo.address || !shippingInfo.city || !shippingInfo.postalCode) {
+            alert("Por favor, complete todos los campos de información de envío.");
+            return;
+        }
+
+        // Construir el objeto de orden
+        const order = {
+            buyer: {
+                name: shippingInfo.fullName,
+                address: shippingInfo.address,
+                city: shippingInfo.city,
+                postalCode: shippingInfo.postalCode,
+            },
+            items: [
+                // ...
+            ],
+            total: 4450,
+        };
+
+        const db = getFirestore();
+        const orderCollection = collection(db, "orders");
+
+        addDoc(orderCollection, order)
+            .then((docRef) => {
+                setOrderId(docRef.id);
+                alert("Orden creada con ID: " + docRef.id);
+            })
+            .catch((error) => {
+                console.error("Error al crear la orden:", error);
+            });
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setShippingInfo({ ...shippingInfo, [name]: value });
-    };
-
-    const handlePlaceOrder = () => {
-        // Aquí se realizaría la lógica para procesar el pedido, como enviar la información al servidor y realizar el pago.
-
-        // Por simplicidad, este ejemplo solo redirige de vuelta a la página principal después de realizar el pedido.
-        history.push('/');
     };
 
     return (
         <div>
             <h2>Checkout</h2>
             <form>
+                {/* Campos de entrada para la información de envío */}
                 <div>
-                    <label htmlFor="fullName">Nombre Completo:</label>
+                    <label>Nombre completo:</label>
                     <input
                         type="text"
-                        id="fullName"
                         name="fullName"
                         value={shippingInfo.fullName}
                         onChange={handleInputChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="address">Dirección:</label>
+                    <label>Dirección:</label>
                     <input
                         type="text"
-                        id="address"
                         name="address"
                         value={shippingInfo.address}
                         onChange={handleInputChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="city">Ciudad:</label>
+                    <label>Ciudad:</label>
                     <input
                         type="text"
-                        id="city"
                         name="city"
                         value={shippingInfo.city}
                         onChange={handleInputChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="postalCode">Código Postal:</label>
+                    <label>Código postal:</label>
                     <input
                         type="text"
-                        id="postalCode"
                         name="postalCode"
                         value={shippingInfo.postalCode}
                         onChange={handleInputChange}
                     />
                 </div>
-                <button type="button" onClick={handlePlaceOrder}>
+
+                <button type="button" onClick={createOrder}>
                     Realizar Pedido
                 </button>
+
+                {!!orderId && <p>Orden creada con ID: {orderId}</p>}
             </form>
         </div>
     );
 };
 
 export default Checkout;
+
+
+

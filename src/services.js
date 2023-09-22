@@ -3,7 +3,7 @@ const products = [
     { id: "2", name: "Tatum 1 Pink Lemonade", price: 600, category: "Sneackers",images:"/img/2.webp"},
     { id: "3", name: "Jordan Why Not .6", price: 700, category: "OtherSneakers",images:"/img/3.webp" },
     { id: "4", name: "Air Jordan 2 Retro", price: 900, category: "Sneakers",images:"/img/4.webp" },
-    { id: "5", name: "Air Jordan 1 Low SE", price: 600, category: "Sneakers",images:"/img/5.webp" },
+    { id: "5", name: "Air Jordan 1 Low SE", price: 600, category: "Sneakers",images:"/img/5.jpg" },
     { id: "6", name: "Air Jordan 1 Low OG", price: 400, category: "OtherSneakers",images:"/img/6.webp" },
     //Other Products
     { id: "7", name: "Paris Saint-Germain", price: 100, category: "Pantalones",images:"/img/7.webp" },

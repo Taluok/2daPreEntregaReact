@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../services";
+import { getProduct } from "../../src/Back"
 import ItemDetail from "./itemDetail/itemDetail";
 
 const ItemDetailContainer = () => {
-    const [item, setItem] = useState(null);
+    const [items, setItem] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const { id } = useParams();
+    
 
     useEffect(() => {
         getProduct(id)
@@ -21,7 +22,7 @@ const ItemDetailContainer = () => {
             });
     }, [id]);
 
-    return <ItemDetail item={item} isLoading={isLoading} />;
+    return <ItemDetail items={items} isLoading={isLoading} />;
 };
 
 export default ItemDetailContainer;
