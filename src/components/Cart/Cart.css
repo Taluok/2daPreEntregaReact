@@ -11,3 +11,10 @@
     gap: 10%;
     padding: 2%;
 }
+.cartVacio{
+    margin-top: 15rem;
+    text-align: center;
+}
+.botonVacio{
+    margin-top: 2rem;
+}

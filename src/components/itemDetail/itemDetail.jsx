@@ -1,42 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { doc, getDoc, getFirestore } from 'firebase/firestore'
-import PropTypes from "prop-types";
-import ColorSelector from "../ColorSelect/ColorSelect";
-import ItemCount from '../ItemCount/ItemCount';
-import { Link } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
-import "./itemDetail.css";
+import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+import ColorSelector from '../ColorSelect/ColorSelect'; // Asegúrate de importar esto si es necesario
+import ItemCount from '../ItemCount/ItemCount'; // Asegúrate de importar esto si es necesario
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext'; // Importa tu contexto de carrito si lo tienes
+import './itemDetail.css';
 
 const ItemDetail = ({ item, isLoading }) => {
-    const [itemData, setItemData] = useState(null);
     const [quantityAdded, setQuantityAdded] = useState(0);
-    const { addItem } = useContext(CartContext);
-
-    useEffect(() => {
-        if (item) {
-            const db = getFirestore();
-            const itemRef = doc(db, 'items', item.id);
-
-            getDoc(itemRef)
-                .then((snapshot) => {
-                    if (snapshot.exists()) {
-                        setItemData({
-                            id: snapshot.id,
-                            ...snapshot.data(),
-                        });
-                    } else {
-                        console.log('El artículo no existe');
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error al obtener el artículo:', error);
-                });
-        }
-    }, [item]);
+    const { addItem } = useContext(CartContext); // Utiliza tu contexto de carrito aquí
 
     const handleOnAdd = (quantity) => {
         setQuantityAdded(quantity);
 
+        // Agrega el artículo al carrito utilizando tu contexto de carrito
         const itemToAdd = {
             id: item.id,
             name: item.name,
@@ -48,23 +25,30 @@ const ItemDetail = ({ item, isLoading }) => {
         addItem(itemToAdd, quantity);
     };
 
-    if (!itemData) {
-        return <p>Producto no encontrado ...</p>
-    };
-
     if (isLoading) {
-        return <h2>Cargando...</h2>;
+        return (
+            <div className="loader">
+                <h2>Cargando...</h2>
+            </div>
+        );
+    }
+
+    if (!item) {
+        return (
+            <p>Producto no encontrado ...</p>
+        );
     }
 
     return (
         <div>
             <div key={item.id} className="text-white p-5">
-                <img src={`/img/${itemData.images}`} alt={itemData.name} className="imageItem" />
+                <img src={`/img/${item.images}`} alt={item.name} className="imageItem" />
                 <div className="card-body d-flex flex-column justify-content-around text-center align-items-center">
-                    <h1 className="card-title">{itemData.name}</h1>
-                    <p className="card-text"> {itemData.description}</p>
+                    <h1 className="card-title">{item.name}</h1>
+                    <p className="card-text"> {item.description}</p>
+                    {/* Asegúrate de importar y utilizar ColorSelector si es necesario */}
                     <ColorSelector />
-                    <p className="card-text text-danger fw-bold fs-1">${itemData.price}</p>
+                    <p className="card-text text-danger fw-bold fs-1">${item.price}</p>
                     {quantityAdded > 0 ? (
                         <>
                             <Link to="/cart" className="btn btn-dark">
@@ -80,14 +64,15 @@ const ItemDetail = ({ item, isLoading }) => {
                 </div>
             </div>
         </div>
-
     );
 };
 
-
 ItemDetail.propTypes = {
-    item: PropTypes.object, 
+    item: PropTypes.object,
     isLoading: PropTypes.bool,
 };
 
 export default ItemDetail;
+
+
+

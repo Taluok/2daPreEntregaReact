@@ -20,8 +20,8 @@ const ItemList = ({ items, isLoading }) => {
                                 />
                                 <div className="card-body">
                                     <h3 className="card-title">{item.name}</h3>
-                                    <p className="card-text">${item.price}</p>
                                     <p className="card-text">{item.category}</p>
+                                    <p className="card-text1">Price: ${item.price}</p>
                                     <Link
                                         to={{
                                             pathname: `/item/${item.id}`,

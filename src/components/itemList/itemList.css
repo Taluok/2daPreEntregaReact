@@ -7,10 +7,12 @@
 .card-title{
     font-family: 'Poppins', sans-serif;
     margin-bottom: 2.7rem;
+    text-align: center;
 }
-.card-text2{
-    font-size: 0.9rem;
+.card-text1{
+    font-size: 1.3rem;
     color:dimgray;
+    margin-top: -2.5rem;
 }
 .card-text{
     font-size:1.4rem;
@@ -20,4 +22,5 @@
     background-color :rgb(223, 28, 28) !important;
     color: white !important;
     border: 1px solid black;
+    margin-left: 9.2rem;
 }

@@ -18,3 +18,10 @@
     background-color: white;
     color:  rgb(223, 28, 28);
 }
+.navbar-nav{
+    margin-left: 11rem;
+}
+.nav-item{
+    padding: 1rem;
+}
+
