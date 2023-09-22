@@ -1,7 +1,6 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState } from "react";
 
-// Crea el contexto
-export const CartContext = createContext();
+export const CartContext = createContext({ cart: [] });
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
@@ -24,40 +23,31 @@ export const CartProvider = ({ children }) => {
             setCart(newCart);
         }
     };
-
     const removeItem = (itemId) => {
         const cartUpdated = cart.filter((prod) => prod.id !== itemId);
         setCart(cartUpdated);
     };
-
     const clearCart = () => {
         setCart([]);
     };
-
     const isInCart = (itemId) => {
         return cart.some((prod) => prod.id === itemId);
     };
 
-    // Proporciona el contexto y los valores
-    const contextValue = {
-        cart,
-        addItem,
-        removeItem,
-        clearCart,
-        totalQuantity,
-        total,
-    };
-
     return (
-        <CartContext.Provider value={contextValue}>
+        <CartContext.Provider
+            value={{
+                cart,
+                addItem,
+                removeItem,
+                clearCart,
+                totalQuantity,
+                total,
+            }}
+        >
             {children}
         </CartContext.Provider>
     );
-};
-
-// También puedes crear un custom hook para acceder al contexto fácilmente
-export const useCart = () => {
-    return useContext(CartContext);
 };
 
 

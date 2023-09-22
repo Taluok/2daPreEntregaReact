@@ -23,7 +23,10 @@ const ItemList = ({ items, isLoading }) => {
                                     <p className="card-text">${item.price}</p>
                                     <p className="card-text">{item.category}</p>
                                     <Link
-                                        to={`/item/${item.id}`}
+                                        to={{
+                                            pathname: `/item/${item.id}`,
+                                            state: { product: item },
+                                        }}
                                         className="btn btn-primary btn-details"
                                     >
                                         Ver Detalles

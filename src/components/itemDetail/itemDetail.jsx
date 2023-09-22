@@ -7,31 +7,32 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import "./itemDetail.css";
 
-const ItemDetail = ({ product, isLoading }) => { 
-
-    const [item, setItem] = useState(null)
+const ItemDetail = ({ product, isLoading }) => {
+    const [item, setItem] = useState(null);
     const [quantityAdded, setQuantityAdded] = useState(0);
     const { addItem } = useContext(CartContext);
 
     useEffect(() => {
-        const db = getFirestore();
-        const itemRef = doc(db, 'items', 'zP8K4NbdHB8HJyhbfJcz');
+        if (product) {
+            const db = getFirestore();
+            const itemRef = doc(db, 'items', product.id);
 
-        getDoc(itemRef)
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    setItem({
-                        id: snapshot.id,
-                        ...snapshot.data(),
-                    });
-                } else {
-                    console.log('El artículo no existe');
-                }
-            })
-            .catch((error) => {
-                console.error('Error al obtener el artículo:', error);
-            });
-    }, []);
+            getDoc(itemRef)
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        setItem({
+                            id: snapshot.id,
+                            ...snapshot.data(),
+                        });
+                    } else {
+                        console.log('El artículo no existe');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error al obtener el artículo:', error);
+                });
+        }
+    }, [product]);
 
     const handleOnAdd = (quantity) => {
         setQuantityAdded(quantity);
@@ -40,11 +41,15 @@ const ItemDetail = ({ product, isLoading }) => {
             id: product.id,
             name: product.name,
             price: product.price,
-            img: product.img,
+            img: product.images,
             description: product.description,
         };
 
         addItem(item, quantity);
+    };
+
+    if (!product) {
+        return <p>Producto no encontrado ...</p>
     };
 
     if (isLoading) {
@@ -52,8 +57,8 @@ const ItemDetail = ({ product, isLoading }) => {
     }
 
     return (
-        item && (
-            <div className="d-flex container col-8 pt-5">
+        <div>
+            <div key={product.id} className="text-white p-5">
                 <img src={`/img/${item.images}`} alt={item.name} className="imageItem" />
                 <div className="card-body d-flex flex-column justify-content-around text-center align-items-center">
                     <h1 className="card-title">{item.name}</h1>
@@ -74,7 +79,8 @@ const ItemDetail = ({ product, isLoading }) => {
                     )}
                 </div>
             </div>
-        )
+        </div>
+
     );
 };
 
@@ -84,4 +90,3 @@ ItemDetail.propTypes = {
 };
 
 export default ItemDetail;
-
