@@ -1,38 +1,38 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
 export const CartContext = createContext({ cart: [] });
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
-    const total = cart.reduce((acc, item) => {
-        return acc + item.quantity * item.price;
-    }, 0);
-
-    const totalQuantity = cart.reduce((acc, item) => {
-        return acc + item.quantity;
-    }, 0);
+    const total = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
+    const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 
     const addItem = (item, quantity) => {
-        if (!isInCart(item.id)) {
+        const itemInCart = cart.find((cartItem) => cartItem.id === item.id);
+
+        if (!itemInCart) {
             setCart((prev) => [...prev, { ...item, quantity }]);
         } else {
-            const itemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
-            const newCart = [...cart];
-            newCart[itemIndex].quantity += quantity;
-            setCart(newCart);
+            setCart((prev) =>
+                prev.map((cartItem) =>
+                    cartItem.id === item.id
+                        ? { ...cartItem, quantity: cartItem.quantity + quantity }
+                        : cartItem
+                )
+            );
         }
     };
+
     const removeItem = (itemId) => {
-        const cartUpdated = cart.filter((prod) => prod.id !== itemId);
-        setCart(cartUpdated);
+        setCart((prev) => prev.filter((item) => item.id !== itemId));
     };
+
     const clearCart = () => {
         setCart([]);
     };
-    const isInCart = (itemId) => {
-        return cart.some((prod) => prod.id === itemId);
-    };
+
+    const isInCart = (itemId) => cart.some((item) => item.id === itemId);
 
     return (
         <CartContext.Provider
@@ -50,8 +50,4 @@ export const CartProvider = ({ children }) => {
     );
 };
 
-
-
-
-
-
+export const useCart = () => useContext(CartContext);

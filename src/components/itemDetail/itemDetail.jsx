@@ -7,20 +7,20 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import "./itemDetail.css";
 
-const ItemDetail = ({ product, isLoading }) => {
-    const [item, setItem] = useState(null);
+const ItemDetail = ({ item, isLoading }) => {
+    const [itemData, setItemData] = useState(null);
     const [quantityAdded, setQuantityAdded] = useState(0);
     const { addItem } = useContext(CartContext);
 
     useEffect(() => {
-        if (product) {
+        if (item) {
             const db = getFirestore();
-            const itemRef = doc(db, 'items', product.id);
+            const itemRef = doc(db, 'items', item.id);
 
             getDoc(itemRef)
                 .then((snapshot) => {
                     if (snapshot.exists()) {
-                        setItem({
+                        setItemData({
                             id: snapshot.id,
                             ...snapshot.data(),
                         });
@@ -32,23 +32,23 @@ const ItemDetail = ({ product, isLoading }) => {
                     console.error('Error al obtener el artículo:', error);
                 });
         }
-    }, [product]);
+    }, [item]);
 
     const handleOnAdd = (quantity) => {
         setQuantityAdded(quantity);
 
-        const item = {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            img: product.images,
-            description: product.description,
+        const itemToAdd = {
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            img: item.images,
+            description: item.description,
         };
 
-        addItem(item, quantity);
+        addItem(itemToAdd, quantity);
     };
 
-    if (!product) {
+    if (!itemData) {
         return <p>Producto no encontrado ...</p>
     };
 
@@ -58,13 +58,13 @@ const ItemDetail = ({ product, isLoading }) => {
 
     return (
         <div>
-            <div key={product.id} className="text-white p-5">
-                <img src={`/img/${item.images}`} alt={item.name} className="imageItem" />
+            <div key={item.id} className="text-white p-5">
+                <img src={`/img/${itemData.images}`} alt={itemData.name} className="imageItem" />
                 <div className="card-body d-flex flex-column justify-content-around text-center align-items-center">
-                    <h1 className="card-title">{item.name}</h1>
-                    <p className="card-text"> {item.description}</p>
+                    <h1 className="card-title">{itemData.name}</h1>
+                    <p className="card-text"> {itemData.description}</p>
                     <ColorSelector />
-                    <p className="card-text text-danger fw-bold fs-1">${item.price}</p>
+                    <p className="card-text text-danger fw-bold fs-1">${itemData.price}</p>
                     {quantityAdded > 0 ? (
                         <>
                             <Link to="/cart" className="btn btn-dark">
@@ -84,8 +84,9 @@ const ItemDetail = ({ product, isLoading }) => {
     );
 };
 
+
 ItemDetail.propTypes = {
-    product: PropTypes.object, // Asegúrate de definir este prop apropiadamente
+    item: PropTypes.object, 
     isLoading: PropTypes.bool,
 };
 
