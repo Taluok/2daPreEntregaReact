@@ -1,5 +1,5 @@
-import { useState } from "react";
-import propTypes from "prop-types";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ItemCount = ({ initial, onAdd, stock }) => {
     const [quantity, setQuantity] = useState(initial);
@@ -17,7 +17,7 @@ const ItemCount = ({ initial, onAdd, stock }) => {
     };
 
     return (
-        <div className="">
+        <div>
             <div className="d-flex justify-content-between">
                 <button className="btn btn-dark" onClick={decrement}>
                     -
@@ -44,7 +44,7 @@ const ItemCount = ({ initial, onAdd, stock }) => {
 export default ItemCount;
 
 ItemCount.propTypes = {
-    initial: propTypes.number,
-    stock: propTypes.number,
-    onAdd: propTypes.func,
+    initial: PropTypes.number,
+    stock: PropTypes.number,
+    onAdd: PropTypes.func,
 };

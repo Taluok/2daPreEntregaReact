@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import ColorSelector from '../ColorSelect/ColorSelect'; // Asegúrate de importar esto si es necesario
-import ItemCount from '../ItemCount/ItemCount'; // Asegúrate de importar esto si es necesario
+import ColorSelector from '../ColorSelect/ColorSelect'; 
+import ItemCount from '../ItemCount/ItemCount'; 
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../context/CartContext'; // Importa tu contexto de carrito si lo tienes
+import { CartContext } from '../../context/CartContext'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './itemDetail.css';
 
 const ItemDetail = ({ item, isLoading }) => {
@@ -23,6 +25,7 @@ const ItemDetail = ({ item, isLoading }) => {
         };
 
         addItem(itemToAdd, quantity);
+        
     };
 
     if (isLoading) {

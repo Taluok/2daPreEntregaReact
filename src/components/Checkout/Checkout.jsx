@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import "./Checkout.css";
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import './Checkout.css';
 
 const Checkout = () => {
-    const [shippingInfo, setShippingInfo] = useState({
+    const initialShippingInfo = {
         fullName: '',
         address: '',
         city: '',
         postalCode: '',
-    });
+    };
 
+    const [shippingInfo, setShippingInfo] = useState(initialShippingInfo);
     const [orderId, setOrderId] = useState(null);
 
-    const createOrder = () => {
+    const createOrder = async () => {
         // Verificar si los campos de información de envío están completos
         if (!shippingInfo.fullName || !shippingInfo.address || !shippingInfo.city || !shippingInfo.postalCode) {
-            alert("Por favor, complete todos los campos de información de envío.");
+            alert('Por favor, complete todos los campos de información de envío.');
             return;
         }
 
@@ -27,23 +28,20 @@ const Checkout = () => {
                 city: shippingInfo.city,
                 postalCode: shippingInfo.postalCode,
             },
-            items: [
-                // ...
-            ],
-            total: 4450,
+            items: [], // Agrega los items de la orden aquí
+            total: 4450, // Cambia esto al total correcto
         };
 
         const db = getFirestore();
-        const orderCollection = collection(db, "orders");
+        const orderCollection = collection(db, 'orders');
 
-        addDoc(orderCollection, order)
-            .then((docRef) => {
-                setOrderId(docRef.id);
-                alert("Orden creada con ID: " + docRef.id);
-            })
-            .catch((error) => {
-                console.error("Error al crear la orden:", error);
-            });
+        try {
+            const docRef = await addDoc(orderCollection, order);
+            setOrderId(docRef.id);
+            alert('Orden creada con ID: ' + docRef.id);
+        } catch (error) {
+            console.error('Error al crear la orden:', error);
+        }
     };
 
     const handleInputChange = (e) => {
@@ -53,7 +51,7 @@ const Checkout = () => {
 
     return (
         <div>
-            <h2 className= "tituloCheckout">Ingresa tus datos para poder completar la compra</h2>
+            <h2 className="tituloCheckout">Ingresa tus datos para poder completar la compra</h2>
             <form className="formCheckout">
                 {/* Campos de entrada para la información de envío */}
                 <div>
@@ -104,6 +102,7 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
 
 
 
