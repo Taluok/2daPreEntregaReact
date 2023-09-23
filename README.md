@@ -1,21 +1,46 @@
 Este repositorio contiene el código fuente de una aplicación web desarrollada en React para crear una tienda en línea de zapatillas. 
 
-## Características Principales
+## SneakerHub
+Es una tienda de Sneakers Jordan de Buenos Aires, Argentina 
 
-- Explora una amplia selección de zapatillas de diversas categorías.
-- Detalles de producto completos, incluyendo imágenes, precio y categoría.
-- Filtra productos por categoría para una navegación más específica.
-- Interfaz de usuario amigable y atractiva, diseñada con Bootstrap.
+## Tecnologías Utilizadas
 
-## Cómo Funciona
-
-1. La aplicación utiliza componentes de React para representar la interfaz de usuario.
-2. Los datos de los productos se almacenan en el archivo `services.js`.
-3. La aplicación utiliza React Router para manejar las rutas y la navegación.
-4. Se implementa un carrito de compras con notificaciones de productos.
+React
+React Vite
+React Router DOM
+HTML/CSS
+JavaScript
+Bootstrap
+Bootstrap Icons
+Firebase
 
 ## Instalación
 
 1. Clona este repositorio: https://github.com/Taluok/2daPreEntregaReact.git
 2. Instala las dependencias: `npm install`.
 3. Inicia la aplicación: `npm start`.
+
+## Instalar las dependencias usando npm o yarn.
+
+Bootstrap:
+$ npm i bootstrap@5.3.2
+
+Firebase:
+$ npm init
+$ npm install --save firebase
+
+## Para el correcto funcionamiento, es necesario tener seteadas las variables de entorno en el archivo .env. Las variables son:
+
+VITE_API_KEY: la API key de Firebase.
+VITE_AUTH_DOMAIN: el dominio de autenticación de Firebase.
+VITE_PROJECT_ID: el ID del proyecto de Firebase.
+VITE_STORAGE_BUCKET: el bucket de almacenamiento de Firebase.
+VITE_MESSAGING_SENDER_ID: el ID del sender de Firebase.
+VITE_APP_ID: el ID de la aplicación de Firebase.
+
+## Demo
+
+[screen-capture.webm](https://github.com/Taluok/2daPreEntregaReact/assets/130709768/02483c30-99ef-4771-aa6f-2e9fef9a2c47)
+
+
+
